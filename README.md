@@ -1,5 +1,5 @@
 # Gathering-Leaves-CSharp
-Rewrote Gathering Leaves from GDScript to C# from scratch.
+Rewrote Gathering Leaves from GDScript to C# from scratch. The game will take some to load, the first time you open up the Win.exe file.
 
 # Known Issues
 - Background parallax will sometimes load in late
