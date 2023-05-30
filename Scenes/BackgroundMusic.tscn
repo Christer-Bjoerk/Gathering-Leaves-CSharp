@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://jc6srrjfhv60"]
+
+[ext_resource type="AudioStream" uid="uid://dr23b6xn6ql6l" path="res://Assets/Audio/purrple-cat-green-tea.mp3" id="1_e8l4k"]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_e8l4k")
+autoplay = true

@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://i6oje3eq7d10"]
+
+[ext_resource type="FontFile" uid="uid://bglqmigwcw6kd" path="res://Assets/Fonts/PublicPixel-z84yD.ttf" id="1_qdr8p"]
+
+[resource]
+base_font = ExtResource("1_qdr8p")

@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckr51be4e5qrc"]
+
+[ext_resource type="Script" path="res://Scripts/Main.cs" id="1_ds76r"]
+[ext_resource type="PackedScene" uid="uid://b3jw7a4qbt45s" path="res://Scenes/Leaf.tscn" id="2_hogr2"]
+[ext_resource type="PackedScene" uid="uid://cvasdsdqk43iv" path="res://Scenes/Player.tscn" id="2_mwi70"]
+[ext_resource type="PackedScene" uid="uid://b01l1xdml3r8i" path="res://Scenes/Parallax.tscn" id="4_wqtan"]
+[ext_resource type="PackedScene" uid="uid://meljl5hijipm" path="res://Scenes/Hud.tscn" id="5_mew7w"]
+[ext_resource type="PackedScene" uid="uid://cg374nx5iy1by" path="res://Scenes/PauseMenu.tscn" id="6_ut7en"]
+
+[sub_resource type="Curve2D" id="Curve2D_jhfvk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 417, 1, 0, 0, 0, 0, 1556, -3)
+}
+point_count = 2
+
+[node name="Main" type="Node"]
+script = ExtResource("1_ds76r")
+leafScene = ExtResource("2_hogr2")
+
+[node name="Player" parent="." instance=ExtResource("2_mwi70")]
+position = Vector2(968, 978)
+
+[node name="LeafTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(960, 1000)
+
+[node name="LeafPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_jhfvk")
+
+[node name="SpawnLeafLocation" type="PathFollow2D" parent="LeafPath"]
+position = Vector2(417, 1)
+rotation = -0.00351184
+
+[node name="Parallax" parent="." instance=ExtResource("4_wqtan")]
+
+[node name="HUD" parent="." instance=ExtResource("5_mew7w")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_ut7en")]
+visible = false
+
+[connection signal="GameOver" from="Player" to="." method="_OnPlayerGameOver"]
+[connection signal="Hit" from="Player" to="." method="game_over"]
+[connection signal="UpdateScore" from="Player" to="." method="_OnPlayerUpdateScore"]
+[connection signal="timeout" from="LeafTimer" to="." method="_OnLeafTimerTimeout"]
+[connection signal="ShowPauseMenu" from="HUD" to="PauseMenu" method="_OnShowPauseMenu"]
+[connection signal="StartGame" from="HUD" to="." method="_OnHudStartGame"]
+[connection signal="UpdateLeafTimerWaitTime" from="HUD" to="." method="_UpdateLeafWaitTime"]
+[connection signal="MainMenu" from="PauseMenu" to="." method="_ReturnToMainMenu"]
+[connection signal="ShowSettings" from="PauseMenu" to="." method="_OnShowSettingsMenu"]
